@@ -1,48 +1,59 @@
-%
-% This is a Dippa editor document template. The template suits best for academic papers
-% written in Finnish.
-%
-
-% Add a document type 'article' that suits for academic papers
 \documentclass[a4paper]{article}
 
-% Encoding that fits to Finnish language
+% Encoodaus, joka sopii suomenkielellä (esim. ä ja ö)
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-% Hyphenation for Finnish
+% Suomenkielinen tavutus
 \usepackage[finnish]{babel}
 
-% References.
-% NOTICE: References are currently not supported by Dippa Editor
+% Viitteet
 \usepackage{natbib}
 
+% Otsikkojen päätteetön fontti
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\large}
+
+% Viitteiden merkit
 \bibpunct{(}{)}{;}{a}{,}{,}
 
-% Begin the document
 \begin{document}
 
-% Document title
-\title{\huge Title \\ \large Subtitle}
-\date{1.1.2012}
-\author{Author name \\ author@email.fi}
+\title{\small T-76.5612 Software Project Management \\ Post-Lecture Exercise 1 \\ \huge Estimointimenetelmät}
+\date{9.2.2012}
+\author{Mikko Koski \\ mikko.koski@aalto.fi \\ 66467F}
 \maketitle
 
-\large
+\normalsize
 
-% First section
-\section{Tämä on ensimmäinen iso otsikko, esim. Johdanto}
+\section{Estimointi MarkII toiminnallisuuspisteillä}
 
-\section{Seuraava iso otsikko}
+Kotitehtävänä oli arvioida kuvitteellisen kurssi-ilmoittautumisohjelmiston työmäärää annetun vaatimuslistauksen perusteella. Arviointi tehtiin MarkII toiminnallisuuspisteillä ja COCOMO-menetelmällä. Lopussa näitä arvioita verrataan luennolla tehdyn suunnittelupokerin tuloksiin.
 
-Tässä on sisältöä seuraavan ison otsikon alla
+MarkII-menetelmä oli mielestäni aikaavievä, hankala ja jopa epämiellyttävä. Jotta MarkII-menetelmän vaatimat syötteet, entiteetit ja tulosteet pystytään määrittämään, pitää ohjelmistosta tehdä alustava luokka- tai tietorakennekaavio. Luokkarakenteen suunnittelu tässä vaiheessa ohjelmiston suunnittelua on liian aikaista, sillä luokkarakenne tulee varmasti muuttumaan kun ohjelmistoa aloitetaan aktiivisesti toteuttamaan. Toiseksi luokkarakenteen suunnittelu on aikaavievää ja täten hidastaa myös estimointia. Harjoituksen apuna käyttämäni luokkarakenne on tämän dokumentin liitteenä (Kuva~\ref{fig:class}).
 
-\subsection{Alaotsikko}
+MarkII-menetelmän syötteiden, entiteettien ja tulosteiden määrittäminen oli joidenkin tehtävien kohdalla todella hankalaa. Syötteet ja tulosteet oli helppo löytää yksinkertaisemmille tehtäville, kuten esimerkiksi kurssin yksityiskohtien listaamiselle. Toisaalta menetelmän käyttäminen tehtäville, joille ei ollut selkeitä syötteitä ja tulosteita, kuten esimerkiksi integrointi käyttäjätietokantoihin, oli todella hankalaa.
 
-Tässä on alaotsikko ja viittaus esimerkkidokumenttiin \citep{koski2012}
+Koska MarkII-menetelmä perustuu pelkästään syötteisiin, entiteetteihin ja tulosteisiin, se ei myöskään anna tilaa arvioijan omille kokemuksille. Tehtävän viimeinen vaatimus käyttäjätietokantojen integroinnista on hyvä esimerkki tästä: kokemuksesta arvioija saattaa tietää, että integrointi ulkopuolisiin järjestelmiin on aina haasteellista ja aikaa vievää, mutta koska tämä haasteellisuus ei näy syötteiden, entiteettien ja tulosteiden lukumäärässä, MarkII ja COCOMO-menetelmät antoivat tehtävälle huomattavasti pienemmän arvion kuin suunnittelupokeri.
 
-\bibliographystyle{plainnat}
-\bibliography{ref}
+\section{Estimointi COCOMO-menetelmällä}
 
-% End of the document
+COCOMO-menetelmän etu MarkII-menetelmään oli sen nopeus. Todellisuudessa COCOMO tosin on luultavasti hitaampi kuin kyseisessä tehtävässä, sillä silloin jouduttaisiin arvioimaan myös ohjelmiston koko koodiriveissä. Tässä tehtävässä ohjelmiston koko saatiin laskettua nopesti MarkII-pisteiden ja aiemman datan perusteella.
+
+COCOMO-menetelmä vaikutti mielestäni tämän tehtävän perusteella todella epäluotettavasta. Ensinnäkin, ohjelmiston koon arviointi koodiriveissä ilman historiatietoa olisi todellisuudessa todella vaikeaa ja perustuisi lähinnä arvailuun. Toiseksi, mielestäni koodirivien määrä on hyvin huono mittari, sillä se saattaa vaihdella huomattavasti jo yksittäisen ohjelmoijan tyylin perusteella.
+
+\section{Tulosten vertailu}
+
+Funktionaalisten menetelmien tulokset ovat tämän dokumentin liitteenä (Kuva~\ref{fig:function_points}). Vertasin näitä tuloksia suunnittelupokerin tuloksiin. Toteutin vertailun siten, että MarkII ja COCOMO-menetelmien pienintä arvoa käytettiin skaalauskertoimena, jonka avulla kaikki muut arvot skaalattiin. Tällöin MarkII ja COCOMO arvioiden pienin arvio sai arvon 1, joka otettiin myös suunnittelupokerissa lähtöarvoksi.
+
+Tulokset on esitetty liitteenä olevassa kaaviossa (Kuva~\ref{fig:results}). Mielestäni erot arvioissa olivat yllättävän pienet. Olisin odottanut huomattavasti suurempaa hajontaa suunnittelupokerin ja funktionaalisten menetelmien välillä.
+
+Tuloksista nähdään, että funktionaaliset menetelmät antavat keskenään hyvin samankaltaiset arviot. Tämä johtuu siitä, että MarkII-menetelmän tuloksia käytetään hyväksi ohjelmiston koon skaalaamisessa historiatietojen pohjalta.
+
+Suurin ero huomataan viimeisen vaatimuksen arviossa. Tämä johtuu siitä, että suunnittelupokerin arviointitiimillä oli aiempaan kokemukseen perustuvaa tietoa tehtävän vaativuudessa, mikä ei näkynyt funktionaalisten menetelmien laskennan lähtöarvoissa. Tästä syystä onkin suuri mahdollisuus, että funktionaalisten menetelmien kokonaisarvio ohjelmiston työmäärästä on liian pieni.
+
+Tulosten perusteella olen kuitenkin yllättynyt siitä, miten hyviä tuloksia funktionaalisilla menetelmillä saatiin. Olisin luullut, että funktionaalisten menetelmien tulokset olisivat poikenneet huomattavasti pokerin tuloksista. Toisaalta, jos verrataan suunnittelupokeriin ja funktionaalisten menetelmien vaatimaan arviointiaikaan, on selvää, että suunnittelupokeri on tässä mielessä huomattavasti tehokkaampi. 
+
+Oikeassa projektissa käyttäisin itse mieluummin suunnittelupokeria kuin funktionaalisia menetelmiä. Näen paljon arvoa siinä, että kaikki tiimin jäsenet pääsevät mukaan arviointiin. Tämä yhteinen suunnittelupalaveri on omiaan sitouttamaan tiimiä tehtävään työhön. Myös suunnittelupokerin nopeus on sen selkeä etu muihin menetelmiin verrattuna.
+
 \end{document}
